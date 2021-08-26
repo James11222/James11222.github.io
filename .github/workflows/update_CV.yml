@@ -18,20 +18,14 @@ jobs:
           python-version: 3.7.6
 
       - name: Install dependencies
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: paper
+        run: |
+          $CONDA/bin/conda install -c conda-forge -c pkgw-forge tectonic
 
       - name: Update CV
         run: |
-          conda init bash
-          conda activate paper
-          conda info
-          conda list
-          conda install -c conda-forge -c pkgw-forge tectonic
           git clone https://github.com/James11222/James_CV.git
           cd James_CV
-          tectonic resume.tex --print
+          $CONDA/bin/tectonic resume.tex --print
           cd ..
           rm James_CV-4.pdf
           mv James_CV/resume.pdf James__CV-4.pdf
