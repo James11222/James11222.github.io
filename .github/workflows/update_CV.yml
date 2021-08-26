@@ -27,9 +27,9 @@ jobs:
           cd James_CV
           tectonic resume.tex --print
           cd ..
-          rm James_CV-4.pdf
+          rm James__CV-4.pdf
           mv James_CV/resume.pdf James__CV-4.pdf
-          rm -rf James__CV
+          rm -rf James_CV
 
       - name: Committing changes
         uses: stefanzweifel/git-auto-commit-action@v4
