@@ -26,7 +26,7 @@ jobs:
 
       - name: Update CV
         run: |
-        	git clone https://github.com/James11222/James_CV.git
+          git clone https://github.com/James11222/James_CV.git
           cd James_CV
           tectonic resume.tex --print
           cd ..
