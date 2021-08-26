@@ -18,9 +18,9 @@ jobs:
           python-version: 3.7.6
 
       - name: Install dependencies
-	uses: conda-incubator/setup-miniconda@v2
-	with: 
-	  activate-environment: paper
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: paper
         run: |
           conda install -c conda-forge -c pkgw-forge tectonic
 
