@@ -23,17 +23,17 @@ jobs:
           activate-environment: paper
         run: |
           conda install -c conda-forge -c pkgw-forge tectonic
-   
+
       - name: Update CV
         run: |
         	git clone https://github.com/James11222/James_CV.git
-	  	cd James_CV
-          	tectonic resume.tex --print
-	  	cd ..
-	  	rm James__CV-4.pdf
-	  	mv James_CV/resume.pdf James__CV-4.pdf
-	  rm -rf James_CV 
-          
+          cd James_CV
+          tectonic resume.tex --print
+          cd ..
+          rm James_CV-4.pdf
+          mv James_CV/resume.pdf James__CV-4.pdf
+          rm -rf James__CV
+
       - name: Committing changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
