@@ -24,6 +24,7 @@ jobs:
 
       - name: Update CV
         run: |
+          conda activate paper
           conda install -c conda-forge -c pkgw-forge tectonic
           git clone https://github.com/James11222/James_CV.git
           cd James_CV
