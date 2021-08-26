@@ -24,6 +24,7 @@ jobs:
 
       - name: Update CV
         run: |
+          conda init bash
           conda activate paper
           conda info
           conda list
