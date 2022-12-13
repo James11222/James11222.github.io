@@ -1,5 +1,9 @@
 name: Update CV
 on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   schedule:
     # * is a special character in YAML so you have to quote this string
     # runs twice a day
@@ -27,8 +31,8 @@ jobs:
           cd James_CV
           tectonic resume.tex --print
           cd ..
-          rm James__CV-4.pdf
-          mv James_CV/resume.pdf James__CV-4.pdf
+          rm James__CV.pdf
+          mv James_CV/resume.pdf James__CV.pdf
           rm -rf James_CV
 
       - name: Committing changes
