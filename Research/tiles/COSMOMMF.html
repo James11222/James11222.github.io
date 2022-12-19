@@ -37,15 +37,26 @@
 							</p>
 
 
-							<h1>The Effects of Baryonic Matter Beyond the Galactic Halo in Cosmological Simulations</h1>
+							<h1>Effects of Baryonic Feedback on the Cosmic Web</h1>
 							
-							Over the past year I have been working under Prof. Jia Liu of University of Tokyo to analyze the effects of baryonic matter beyond
-							the galactic halo in cosmological simulations such as IllustrisTNG. Results are pending, but in the mean time
-							here is a super cool plot from the project as a teaser:<br>
+							I implemented a modified version of the NEXUS+ algorithm for a multiscale morphological analysis of IllustrisTNG simulations. 
+							Comparing simulations with and without baryonic matter allowed us to measure the effects of baryonic feedback on large-scale 
+							structures in the cosmic web. More details of our work can be found in our paper on ArXiv: <a href="https://arxiv.org/abs/2212.05927"><b><u>CLICK HERE</u></b></a>.<br>
 							<br>
 
-							<img src="../images/research_images/NEXUSPLUS_512_RESULT_dark.png" style="max-width:550;width:100%" alt=""/>
+							<p align="center">
+								<img src="../images/research_images/dark_COSMOMMF_abstract.png" style="max-width:550;width:70%" alt=""/>
+							</p>
 
+							The code used for our work is available on the <a href="https://github.com/James11222/CosmoMMF"><b><u>COSMOMMF GITHUB</u></b></a>. We implemented the code 
+							in the language <em>julia</em>, the code is available as a package <em>CosmoMMF.jl</em>. We show a small summary snapshot of the 
+							how the code works. The code is capable of assigning signatures for Cluster, Filament, and Wall type structures in a cosmological 
+							simulation, we then use those signatures with physical criterion to identify and tag structures in the simulation. This is shown below.
+							For more details of our findings please see our paper linked above.
+
+							<p align="center">
+								<img src="../images/research_images/COSMOMMF_Summary.png" style="max-width:550;width:85%" alt=""/>
+							</p>
 						</div>
 					</div>
 
