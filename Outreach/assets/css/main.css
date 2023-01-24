@@ -104,10 +104,10 @@ input, select, textarea {
 	body {
 		/* background: #000000; */
 		background: 
-		 linear-gradient(to right, rgba(0,0,0,0) ,rgba(0,0,0,0.9),
+		 linear-gradient(to right, rgba(0,0,0,0),rgba(0,0,0,0.9),
 		 rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1),rgba(0,0,0,1), 
 		 rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,0.9), rgba(0,0,0,0)),
-		 url("../../../images/dark_sky.jpeg");
+		 url("../../../images/dark_sky.png");
 	
 
 		 animation: fadeInAnimation ease 3s;
