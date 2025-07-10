@@ -6,7 +6,7 @@ on:
     branches: [ main ]
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: '0 0 1 * *'
+    - cron: '0 9 1 * *'
 
 jobs:
   notebooks:
@@ -15,24 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7.6
-
-      - name: Install dependencies
-        run: |
-          brew install tectonic
-
       - name: Update CV
         run: |
-          git clone https://github.com/James11222/James_CV.git
-          cd James_CV
-          tectonic resume.tex --print
-          cd ..
           rm James__CV.pdf
-          mv James_CV/resume.pdf James__CV.pdf
-          rm -rf James_CV
+          git clone https://github.com/James11222/James_CV.git
+          cp James_CV/resume.pdf James__CV.pdf
+          rm -rf James_CV/
+
+      - run: git pull
 
       - name: Committing changes
         uses: stefanzweifel/git-auto-commit-action@v4
