@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <!--
-	Phantom by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Research page — scroll-driven zoom through cosmic scales.
+	Styled to match the Phantom (HTML5 UP) theme used across the site.
+	html5up.net | @ajlkn | CCA 3.0 license (html5up.net/license)
 -->
 <html>
 	<head>
@@ -10,232 +10,117 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/research.css?v=4" />
 	</head>
-	<body class="is-preload">
-		<!-- Wrapper -->
-			<div id="wrapper">
+	<body>
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
+		<!-- Header (matches the other Phantom pages) -->
+		<header id="header">
+			<div class="inner">
+				<a href="../index.html" class="logo">
+					<span class="symbol"><img src="images/backarrow.png" alt="" /></span><span class="title">Home</span>
+				</a>
+			</div>
+		</header>
 
-							<!-- Logo -->
-								<a href="../index.html" class="logo">
-									<span class="symbol"><img src="images/backarrow.png" alt="" /></span><span class="title">Home</span>
-								</a>
+		<!-- Scroll indicator (fixed, hides at bottom of page) -->
+		<div id="scroll-indicator">
+			<span class="si-label">Scroll</span>
+			<div class="si-chevron"></div>
+		</div>
 
-							<!-- Nav
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav> -->
+		<!-- ═══════════════════════════════════════════════════
+		     HEADER  —  landing text before the animation
+		════════════════════════════════════════════════════ -->
+		<section id="header-section">
 
-						</div>
-					</header>
+			<div class="h-eyebrow">Astrophysics &middot; Princeton University</div>
 
+			<h1 class="h-title">
+				<em>Cosmic Web</em><br>to <em>Black Holes</em>
+			</h1>
 
-
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<header>
-								<h1>Welcome to my Research Page</h1>
-
-								<p>
-								My research focuses on computational astrophysics through numerical simulations, algorithms, and big data. To summarize
-								my research interests I have constructed a wordcloud from the abstracts of my first-author publications using my webscraping 
-								python package <a href="https://github.com/James11222/CloudsOfArx"><b><u>CloudsOfArx</u></b></a>. 
-								</p>
-								<p align="center">
-									<img src="images/BH_wordcloud.png" alt="" width="80%"/>
-								</p>
-								<p>Feel free to click on any one of the tiles below to read more about a given project. The list is ever increasing
-								and I'm always interested to work with others on interesting projects. I'm most interested in computational astrophysics 
-								and numerical simulations. 
-								</p>
-							</header>
-
-							<h1> Undergrad</h1>
-							<section class="tiles">
-								<article class="style1">
-									<span class="image">
-										<img src="images/tile_cosmoMMF.png" alt="" />
-									</span>
-									<a href="tiles/COSMOMMF.html">
-										<h2>Cosmo-MMF</h2>
-										<div class="content">
-											<p>Cosmological Multiscale Morphological analysis of the impact of Baryons in IllustrisTNG.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="images/tile_sarabande.png" alt="" />
-									</span>
-									<a href="tiles/SARABANDE.html">
-										<h2>Sarabande</h2>
-										<div class="content">
-											<p>A parallelized python package for measuring 3/4 Point Correlation Functions on Periodic Data.</p>
-										</div>
-									</a>
-								</article>
-
-								<article class="style3">
-									<span class="image">
-										<img src="images/tile_PIPS.png" alt="" />
-									</span>
-									<a href="tiles/PIPS_VAR_STARS.html">
-										<h2>Observational Astronomy</h2>
-										<div class="content">
-											<p>Observational research projects under the Filippenko Group.</p>
-										</div>
-									</a>
-								</article>
-			
-								 <article class="style4">
-									<span class="image">
-										<img src="images/tile_LIGO.png" alt="" />
-									</span>
-									<a href="tiles/LIGO_SURF.html">
-										<h2>Gravitational Wave Cosmology</h2>
-										<div class="content">
-											<p>Using gravitational wave theory of inspiraling neutron stars to measure the Hubble Constant.</p>
-										</div>
-									</a>
-								</article> 
-								
-
-								<article class="style5">
-									<span class="image">
-										<img src="images/tile_ISM.png" alt="" />
-									</span>
-									<a href="tiles/ULAB_ISM.html">
-										<h2>Mixing Layers in the Interstellar Medium</h2>
-										<div class="content">
-											<p>A computational simulations project using Athena++ to model Mixing Layers in the ISM with Hydrodynamics.</p>
-										</div>
-									</a>
-								</article>
-
-								<!-- <article class="style5">
-									<span class="image">
-										<img src="images/tile_ISM.png" alt="" />
-									</span>
-									<a href="Collaborators.html">
-										<h2>Mixing Layers in the Interstellar Medium</h2>
-										<div class="content">
-											<p>A computational simulations project using Athena++ to model Mixing Layers in the ISM with Hydrodynamics.</p>
-										</div>
-									</a>
-								</article> -->
-
-								<!--
-
-								<article class="style6">
-									<span class="image">
-										<img src="images/pic06.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Veroeros</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="images/pic07.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Ipsum</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-										<img src="images/pic08.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Dolor</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style1">
-									<span class="image">
-										<img src="images/pic09.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Nullam</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style5">
-									<span class="image">
-										<img src="images/pic10.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Ultricies</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style6">
-									<span class="image">
-										<img src="images/pic11.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Dictum</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style4">
-									<span class="image">
-										<img src="images/pic12.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Pretium</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article> -->
-							</section>
-
-							<br><br><br>
-							<h1>Collaborators</h1>
-							<p>
-								Below is a globe representing the affiliations of all of my collaborators I have worked with closely in my career. Feel 
-								free to click on the globe to interact with it and see where my collaborators are located in the world.
-							</p>
-							<p align="center">
-								<a href="interactive_globe.html">
-								<img src="images/globe.gif" width='60%' alt="" /></a>
-							</p>
-
-							
-						</div>
-						
-					</div>
-					
+			<div class="h-body">
+				<p>
+					I'm broadly interested in using cosmological datasets to understand the astrophysical processes that govern
+					the formation and evolution of galaxies in the Universe. These processes are challenging to understand because they are
+					inherently complex and multi-scale in nature. My approach involves using CMB secondaries,
+					weak lensing, and numerical simulations to study these processes. I enjoy making use of higher order statistics
+					and machine learning techniques to extract as much information as possible from these complex datasets.
+				</p>
+				<p>
+					The simulation below is a stitching of cosmological hydrodynamical simulation spanning more than 10 orders of magnitude in scale, beginning
+					at the scale of the cosmic web (~1 Gpc) and ending at the accretion disk of a supermassive black hole (~0.01 pc) (Credit: FLAMINGO Collaboration & Phil Hopkins @ Caltech).
+					Scroll to explore the full range of scales and my journey thus far to understand these complex processes.
+				</p>
 			</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<figure class="h-wordcloud">
+				<img src="images/wordcloud.png" alt="Word cloud of research topics">
+				<figcaption>To help summarize my research interests I have constructed a wordcloud from the abstracts of my first-author publications using my web-scraping python package <a href="https://github.com/James11222/CloudsOfArx" target="_blank"><b><u>CloudsOfArx</u></b></a>.</figcaption>
+			</figure>
+
+		</section>
+
+
+		<!-- ═══════════════════════════════════════════════════
+		     ANIMATION  —  scroll-driven GIF zoom
+		     Height = 100vh slide-up + ~580vh frame scrubbing.
+		     Info panels are injected here by research.js,
+		     defined in assets/js/windows.js.
+		════════════════════════════════════════════════════ -->
+		<section id="animation-section">
+			<div id="sticky-wrap">
+
+				<div id="loading-overlay">
+					<div class="lo-label">Loading simulation&hellip;</div>
+					<div class="lo-track"><div id="lo-bar"></div></div>
+				</div>
+
+				<canvas id="gif-canvas"></canvas>
+
+				<div id="progress-bar"><div id="progress-fill"></div></div>
+				<div id="video-credit">Video Credits: FLAMINGO Collaboration & Phil Hopkins @ Caltech</div>
+
+			</div>
+		</section>
+
+
+		<!-- ═══════════════════════════════════════════════════
+		     END  —  appears over the frozen final frame
+		════════════════════════════════════════════════════ -->
+		<section id="end-section">
+			<div class="end-inner">
+				<div class="end-divider"></div>
+				<h2>Understanding Astrophysics One Scale at a Time</h2>
+				<p>
+					Work is always ongoing, please feel free to reach out if you have any questions or would like to collaborate on research related to my interests.
+					My email is <a href="mailto:jsunseri@princeton.edu"><b><u>jsunseri@princeton.edu</u></b></a>.
+				</p>
+			</div>
+		</section>
+
+
+		<!-- ═══════════════════════════════════════════════════
+		     COLLABORATORS  —  interactive globe
+		════════════════════════════════════════════════════ -->
+		<section id="collab-section">
+			<div class="collab-inner">
+				<h2 class="collab-title">Collaborators</h2>
+				<p>
+					Below is a globe representing the affiliations of all of my collaborators I have worked with closely in my career. Feel
+					free to click on the globe to interact with it and see where my collaborators are located in the world.
+				</p>
+				<p class="collab-globe">
+					<a href="interactive_globe.html"><img src="images/globe.gif" alt="Interactive globe of collaborator locations" /></a>
+				</p>
+			</div>
+		</section>
+
+
+		<!-- windows.js must load before research.js -->
+		<script src="assets/js/windows.js?v=2"></script>
+		<script src="assets/js/research.js?v=2"></script>
 
 	</body>
 </html>
