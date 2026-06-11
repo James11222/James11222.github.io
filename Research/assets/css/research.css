@@ -1,0 +1,529 @@
+/* ================================================================
+   research.css  —  styles for the scroll-driven Research page.
+   Loads AFTER assets/css/main.css (Phantom theme) and inherits its
+   fonts (Source Sans Pro), dark-sky body background, and link
+   styling. Everything here is scoped to the research page sections.
+   ================================================================ */
+
+/* ── Theme variables (mapped to the Phantom palette) ───────────── */
+:root {
+  --bg:           #000000;
+  --surface:      rgba(0, 0, 0, 0.88);
+  --border:       rgba(236, 226, 226, 0.16);
+  --text:         #ece2e2;
+  --text-dim:     rgba(236, 226, 226, 0.55);
+  --accent:       #e77500;                      /* Princeton orange */
+  --accent-hot:   #ff9b3d;                      /* lighter orange for hovers */
+  --accent-glow:  rgba(231, 117, 0, 0.35);
+  --font:         "Source Sans Pro", Helvetica, sans-serif;
+  --mono:         "Courier New", monospace;
+}
+
+/* ── Header (slimmer than the default Phantom 8em padding) ─────── */
+#header {
+  position: relative;
+  padding: 2em 0 0 2em;
+  z-index: 50;
+}
+
+#header .logo {
+  margin: 0;
+}
+
+@media screen and (max-width: 736px) {
+  #header {
+    padding: 1.25em 0 0 1.25em;
+  }
+}
+
+/* ── Hero / landing section ────────────────────────────────────── */
+#header-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 4em max(5vw, 2rem) 6em;
+}
+
+.h-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.65em;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.8em;
+}
+
+.h-title {
+  font-size: clamp(2em, 6vw, 4em);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  margin: 0 auto 0.7em;
+  max-width: 820px;
+}
+
+.h-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+/* main.css hides h1 <br> below 980px — keep the title's line break */
+.h-title br {
+  display: inline;
+}
+
+.h-wordcloud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  width: min(100%, 820px);
+  margin: 3em auto 0;
+}
+
+.h-wordcloud img {
+  width: 100%;
+  height: auto;
+  /* blend the image's black background into the page so the
+     rectangle is invisible over the starry body background */
+  mix-blend-mode: screen;
+  opacity: 0.92;
+  transition: opacity 0.2s;
+}
+
+.h-wordcloud img:hover { opacity: 1; }
+
+.h-wordcloud figcaption {
+  font-size: 0.75em;
+  letter-spacing: 0.02em;
+  color: rgba(236, 226, 226, 0.72);
+  text-align: center;
+  line-height: 1.7;
+  max-width: 620px;
+}
+
+.h-body {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.h-body p {
+  font-size: 0.85em;
+  line-height: 1.75;
+  color: var(--text-dim);
+  font-weight: 300;
+  margin: 0 0 1.3em 0;
+}
+
+.h-body p strong {
+  color: var(--text);
+}
+
+@media screen and (max-width: 736px) {
+  #header-section {
+    padding: 3em 1.5rem 4em;
+  }
+  .h-wordcloud {
+    margin-top: 2em;
+  }
+}
+
+/* ── Scroll indicator (fixed) ──────────────────────────────────── */
+#scroll-indicator {
+  position: fixed;
+  bottom: 2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  z-index: 200;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
+}
+
+#scroll-indicator.hidden { opacity: 0; }
+
+.si-label {
+  font-family: var(--mono);
+  font-size: 0.6em;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.si-chevron {
+  width: 18px;
+  height: 18px;
+  border-right: 1.5px solid var(--text-dim);
+  border-bottom: 1.5px solid var(--text-dim);
+  transform: rotate(45deg);
+  animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: rotate(45deg) translate(0, 0);     opacity: 0.35; }
+  55%       { transform: rotate(45deg) translate(3px, 3px); opacity: 0.9;  }
+}
+
+/* ── Animation section ─────────────────────────────────────────── */
+#animation-section {
+  position: relative;
+  /* 100vh slide-up transition + ~580vh frame scrubbing */
+  height: 690vh;
+}
+
+/* Fixed canvas wrapper — covers full viewport, z-index above header */
+#sticky-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 100;
+  transform: translateY(100%);  /* JS slides this to translateY(0) */
+  will-change: transform;
+}
+
+#gif-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Loading overlay ───────────────────────────────────────────── */
+#loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  transition: opacity 1s ease;
+}
+
+#loading-overlay.done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lo-label {
+  font-family: var(--mono);
+  font-size: 0.65em;
+  letter-spacing: 0.18em;
+  color: var(--text-dim);
+  margin-bottom: 1.4rem;
+}
+
+.lo-track {
+  width: 180px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+#lo-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.15s linear;
+}
+
+/* ── Left-edge scroll progress bar ────────────────────────────── */
+#progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  z-index: 10;
+}
+
+#progress-fill {
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-hot));
+}
+
+/* ── Video credit (bottom-right of canvas) ─────────────────────── */
+#video-credit {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-family: var(--mono);
+  font-size: 0.6em;
+  letter-spacing: 0.08em;
+  color: rgba(236, 226, 226, 0.4);
+  pointer-events: none;
+  z-index: 10;
+}
+
+@media screen and (max-width: 736px) {
+  #video-credit {
+    bottom: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.5em;
+  }
+}
+
+/* ── Info windows ──────────────────────────────────────────────── */
+.info-win {
+  position: absolute;
+  width: 324px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem 1.2rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.info-win.visible { pointer-events: auto; }
+
+.win-anchor {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow), 0 0 16px var(--accent-glow);
+  flex-shrink: 0;
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 6px var(--accent-glow); }
+  50%       { box-shadow: 0 0 14px var(--accent-glow), 0 0 28px rgba(231, 117, 0, 0.15); }
+}
+
+.win-top-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.win-scale {
+  font-family: var(--mono);
+  font-size: 0.55em;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.win-title {
+  font-size: 0.85em;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  margin-bottom: 0.7rem;
+  line-height: 1.25;
+}
+
+.win-img {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 0.8rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06); /* cancel theme dotted link underline */
+  text-decoration: none;
+}
+
+.win-img img {
+  width: 100%;
+  height: auto;        /* natural aspect ratio — no cropping */
+  display: block;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.win-img:hover img { opacity: 1; }
+
+.win-img.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;   /* placeholder still needs a defined height */
+}
+
+.win-img.placeholder::after {
+  content: attr(data-label);
+  font-family: var(--mono);
+  font-size: 0.55em;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.win-body {
+  font-size: 0.7em;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.win-link {
+  display: inline-block;
+  margin-top: 0.65rem;
+  font-family: var(--mono);
+  font-size: 0.62em;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.win-link:hover {
+  border-color: var(--accent-hot);
+}
+
+/* Mobile: panels are pinned by JS (alternating top/bottom, centered).
+   Keep them narrow enough to fit and cap image height so a panel
+   never fills the whole screen. */
+@media screen and (max-width: 736px) {
+  .info-win {
+    width: min(324px, calc(100vw - 2.5rem));
+    padding: 0.85rem 0.95rem 0.95rem;
+    /* two pinned panels (top + bottom) must never overlap */
+    max-height: 38vh;
+    overflow-y: auto;
+  }
+  .win-img img {
+    max-height: 22vh;
+    object-fit: contain;
+  }
+  .win-body {
+    font-size: 0.65em;
+    line-height: 1.5;
+  }
+}
+
+/* ── End section ───────────────────────────────────────────────── */
+#end-section {
+  position: relative;
+  z-index: 110;          /* above the fixed canvas */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8vh max(5vw, 2rem);
+  text-align: center;
+  background: var(--bg);
+}
+
+/* Gradient blends the frozen GIF into the dark end section */
+#end-section::before {
+  content: '';
+  position: absolute;
+  top: -40vh;
+  left: 0;
+  width: 100%;
+  height: 40vh;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+}
+
+.end-inner { max-width: 520px; }
+
+.end-inner h2 {
+  font-size: 1.1em;
+  font-weight: 900;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  margin: 0 0 1.5em 0;
+}
+
+.end-inner p {
+  font-size: 0.85em;
+  line-height: 1.75;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.end-divider {
+  width: 32px;
+  height: 1px;
+  background: var(--border);
+  margin: 0 auto 2rem;
+}
+
+/* ── Collaborators section ─────────────────────────────────────── */
+#collab-section {
+  position: relative;
+  z-index: 110;          /* above the fixed canvas */
+  background: var(--bg);
+  padding: 4em max(5vw, 2rem) 6em;
+}
+
+.collab-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.collab-title {
+  font-size: 1.1em;
+  font-weight: 900;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  margin: 0 0 1.5em 0;
+}
+
+.collab-inner p {
+  font-size: 0.85em;
+  line-height: 1.75;
+  color: var(--text-dim);
+  max-width: 640px;
+  margin: 0 auto 2em;
+}
+
+.collab-globe {
+  margin: 0;
+}
+
+.collab-globe a {
+  display: inline-block;
+  border-bottom: none;   /* cancel theme dotted link underline */
+}
+
+.collab-globe img {
+  width: min(60%, 560px);
+  height: auto;
+  transition: opacity 0.2s;
+}
+
+.collab-globe a:hover img {
+  opacity: 0.85;
+}
+
+@media screen and (max-width: 736px) {
+  .collab-globe img {
+    width: 90%;
+  }
+}
