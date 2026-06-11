@@ -200,35 +200,98 @@
   height: 100%;
 }
 
-/* ── Loading overlay ───────────────────────────────────────────── */
+/* ── Full-page cosmic loading splash ───────────────────────────── */
+/* Shown immediately on page load (the GIF can take ~10s to decode),
+   then faded out by research.js adding the .done class. Sits above
+   everything — header (z 50) and sticky-wrap (z 100). */
 #loading-overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  background: var(--bg);
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 30;
-  transition: opacity 1s ease;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(231, 117, 0, 0.12), transparent 55%),
+    #000000;
+  transition: opacity 0.9s ease, visibility 0.9s ease;
 }
 
 #loading-overlay.done {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
 }
 
-.lo-label {
-  font-family: var(--mono);
-  font-size: 0.65em;
-  letter-spacing: 0.18em;
-  color: var(--text-dim);
-  margin-bottom: 1.4rem;
+/* Expanding rings + glowing core — evokes zooming out through the
+   cosmic scales the animation itself sweeps across. */
+.lo-cosmos {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 2.8rem;
+}
+
+.lo-ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: lo-expand 3s ease-out infinite;
+}
+
+.lo-ring:nth-child(2) { animation-delay: 1s; }
+.lo-ring:nth-child(3) { animation-delay: 2s; }
+
+@keyframes lo-expand {
+  0%   { transform: scale(0.12); opacity: 0; }
+  12%  { opacity: 0.85; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.lo-core {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-hot);
+  box-shadow: 0 0 24px 7px var(--accent-glow);
+  animation: lo-pulse 2s ease-in-out infinite;
+}
+
+@keyframes lo-pulse {
+  0%, 100% { transform: scale(1);   opacity: 1;   }
+  50%      { transform: scale(1.5); opacity: 0.65; }
+}
+
+.lo-title {
+  font-family: var(--font);
+  font-size: clamp(1.15em, 3.6vw, 1.6em);
+  font-weight: 300;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: var(--text);
+  padding: 0 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.lo-title .accent {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .lo-track {
-  width: 180px;
-  height: 1.5px;
+  width: 220px;
+  max-width: 60vw;
+  height: 2px;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 2px;
   overflow: hidden;
@@ -237,9 +300,25 @@
 #lo-bar {
   height: 100%;
   width: 0%;
-  background: var(--accent);
+  background: linear-gradient(to right, var(--accent), var(--accent-hot));
   border-radius: 2px;
+  box-shadow: 0 0 10px var(--accent-glow);
   transition: width 0.15s linear;
+}
+
+.lo-label {
+  font-family: var(--mono);
+  font-size: 0.6em;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 1.3rem;
+}
+
+/* Respect reduced-motion: keep the splash, drop the looping motion. */
+@media (prefers-reduced-motion: reduce) {
+  .lo-ring  { animation: none; opacity: 0.4; transform: scale(0.7); }
+  .lo-core  { animation: none; }
 }
 
 /* ── Left-edge scroll progress bar ────────────────────────────── */

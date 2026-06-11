@@ -10,9 +10,26 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/research.css?v=4" />
+		<link rel="stylesheet" href="assets/css/research.css?v=5" />
 	</head>
 	<body>
+
+		<!-- ═══════════════════════════════════════════════════
+		     LOADING SPLASH  —  full-page, shown immediately while
+		     the (large) GIF is fetched & decoded. research.js adds
+		     the .done class once every frame is ready.
+		════════════════════════════════════════════════════ -->
+		<div id="loading-overlay">
+			<div class="lo-cosmos" aria-hidden="true">
+				<span class="lo-ring"></span>
+				<span class="lo-ring"></span>
+				<span class="lo-ring"></span>
+				<span class="lo-core"></span>
+			</div>
+			<div class="lo-title">Please wait as the <span class="accent">Universe</span><br>is loaded into your browser</div>
+			<div class="lo-track"><div id="lo-bar"></div></div>
+			<div class="lo-label">Loading simulation&hellip;</div>
+		</div>
 
 		<!-- Header (matches the other Phantom pages) -->
 		<header id="header">
@@ -70,11 +87,6 @@
 		════════════════════════════════════════════════════ -->
 		<section id="animation-section">
 			<div id="sticky-wrap">
-
-				<div id="loading-overlay">
-					<div class="lo-label">Loading simulation&hellip;</div>
-					<div class="lo-track"><div id="lo-bar"></div></div>
-				</div>
 
 				<canvas id="gif-canvas"></canvas>
 
